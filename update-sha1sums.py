@@ -17,7 +17,7 @@
 #
 
 import sys
-sys.path.append("../../../vendor/lineage/build/tools/")
+sys.path.append("../../../vendor/wrath/build/tools/")
 from update_sha1sums import Updater
 
 Updater.setup("sm6150-common", "xiaomi")

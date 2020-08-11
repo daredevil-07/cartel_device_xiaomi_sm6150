@@ -348,6 +348,10 @@ PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/xiaomi
 
+# Shim for camera
+PRODUCT_PACKAGES += \
+    libshim_camera
+
 # Telephony
 PRODUCT_PACKAGES += \
     qti_telephony_hidl_wrapper.xml \

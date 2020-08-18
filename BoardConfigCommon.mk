@@ -28,6 +28,7 @@ BOARD_ANT_WIRELESS_DEVICE := "qualcomm-hidl"
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := sm6150
 TARGET_NO_BOOTLOADER := true
+MSMSTEPPE := sm6150
 
 # Android Verified Boot
 BOARD_AVB_ENABLE := true

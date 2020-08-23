@@ -11,9 +11,9 @@ set -e
 MY_DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "${MY_DIR}" ]]; then MY_DIR="${PWD}"; fi
 
-CYGNUS_ROOT="${MY_DIR}"/../../..
+CONQUER_ROOT="${MY_DIR}"/../../..
 
-HELPER="${CYGNUS_ROOT}/vendor/cygnus/build/tools/extract_utils.sh"
+HELPER="${CONQUER_ROOT}/vendor/conquer/build/tools/extract_utils.sh"
 if [ ! -f "${HELPER}" ]; then
     echo "Unable to find helper script at ${HELPER}"
     exit 1
@@ -74,7 +74,7 @@ function blob_fixup() {
 
 if [ -z "${ONLY_TARGET}" ]; then
     # Initialize the helper for common device
-    setup_vendor "${DEVICE_COMMON}" "${VENDOR}" "${CYGNUS_ROOT}" true "${CLEAN_VENDOR}"
+    setup_vendor "${DEVICE_COMMON}" "${VENDOR}" "${CONQUER_ROOT}" true "${CLEAN_VENDOR}"
 
     extract "${MY_DIR}/proprietary-files.txt" "${SRC}" \
             "${KANG}" --section "${SECTION}"
@@ -83,15 +83,15 @@ fi
 if [ -z "${ONLY_COMMON}" ] && [ -s "${MY_DIR}/../${DEVICE}/proprietary-files.txt" ]; then
     # Reinitialize the helper for device
     source "${MY_DIR}/../${DEVICE}/extract-files.sh"
-    setup_vendor "${DEVICE}" "${VENDOR}" "${CYGNUS_ROOT}" false "${CLEAN_VENDOR}"
+    setup_vendor "${DEVICE}" "${VENDOR}" "${CONQUER_ROOT}" false "${CLEAN_VENDOR}"
 
     extract "${MY_DIR}/../${DEVICE}/proprietary-files.txt" "${SRC}" \
             "${KANG}" --section "${SECTION}"
 fi
 
-COMMON_BLOB_ROOT="${CYGNUS_ROOT}/vendor/${VENDOR}/${DEVICE_COMMON}/proprietary"
+COMMON_BLOB_ROOT="${CONQUER_ROOT}/vendor/${VENDOR}/${DEVICE_COMMON}/proprietary"
 
-DEVICE_BLOB_ROOT="${CYGNUS_ROOT}/vendor/${VENDOR}/${DEVICE}/proprietary"
+DEVICE_BLOB_ROOT="${CONQUER_ROOT}/vendor/${VENDOR}/${DEVICE}/proprietary"
 
 patchelf --remove-needed libmegface.so "$DEVICE_BLOB_ROOT"/vendor/lib64/hw/camera.qcom.so
 patchelf --remove-needed libMegviiFacepp-0.5.2.so "$DEVICE_BLOB_ROOT"/vendor/lib64/hw/camera.qcom.so

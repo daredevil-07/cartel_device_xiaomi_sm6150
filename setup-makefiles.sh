@@ -13,9 +13,9 @@ INITIAL_COPYRIGHT_YEAR=2019
 MY_DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "${MY_DIR}" ]]; then MY_DIR="${PWD}"; fi
 
-CONQUER_ROOT="${MY_DIR}/../../.."
+CARTEL_ROOT="${MY_DIR}/../../.."
 
-HELPER="${CONQUER_ROOT}/vendor/conquer/build/tools/extract_utils.sh"
+HELPER="${CARTEL_ROOT}/vendor/cartel/build/tools/extract_utils.sh"
 if [ ! -f "${HELPER}" ]; then
     echo "Unable to find helper script at ${HELPER}"
     exit 1
@@ -23,7 +23,7 @@ fi
 source "${HELPER}"
 
 # Initialize the helper for common
-setup_vendor "${DEVICE_COMMON}" "${VENDOR}" "${CONQUER_ROOT}" true
+setup_vendor "${DEVICE_COMMON}" "${VENDOR}" "${CARTEL_ROOT}" true
 
 # Copyright headers and guards
 write_headers "davinci phoenix violet"
@@ -37,7 +37,7 @@ write_footers
 if [ -s "${MY_DIR}/../${DEVICE}/proprietary-files.txt" ]; then
     # Reinitialize the helper for device
     INITIAL_COPYRIGHT_YEAR="$DEVICE_BRINGUP_YEAR"
-    setup_vendor "${DEVICE}" "${VENDOR}" "${CONQUER_ROOT}" false
+    setup_vendor "${DEVICE}" "${VENDOR}" "${CARTEL_ROOT}" false
 
     # Copyright headers and guards
     write_headers
